@@ -1,0 +1,23 @@
+public final class VolleySingleton {
+
+    // Atributos
+    private static VolleySingleton singleton;
+    private RequestQueue requestQueue;
+    private static Context context;
+
+
+    private VolleySingleton(Context context) {
+        VolleySingleton.context = context;
+        requestQueue = getRequestQueue();
+    }
+
+    /**
+     * Retorna la instancia unica del singleton
+     * @param context contexto donde se ejecutarán las peticiones
+     * @return Instancia
+     */
+    public static synchronized VolleySingleton getInstance(Context context) {
+        if (singleton == null) {
+            singleton = new VolleySingleton(context.getApplicationContext());
+        }
+        return singleton;
